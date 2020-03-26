@@ -14,7 +14,7 @@
     <meta name="keywords" content="Python">
 
 
-<title>charles | Lomect</title>
+<title>ubuntu_wechat | Lomect</title>
 
 
 
@@ -175,7 +175,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">charles</h1>
+            <h1 class="post-title">ubuntu_wechat</h1>
             
                 <div class="post-meta">
                     
@@ -184,7 +184,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">三月 24, 2020&nbsp;&nbsp;0:04:07</a>
+                        Date: <a href="#">三月 26, 2020&nbsp;&nbsp;22:30:18</a>
                         </span>
                     
                     
@@ -193,14 +193,18 @@
         </header>
 
         <div class="post-content">
-            <h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>Charles官网下载deb包，用sudo dpkg -i命令安装，或者按照说明将其添加到软件源，用sudo apt install就能安装，这一点不赘述；</p>
-<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>下载Charles的SSL根证书：Help -&gt; SSL Proxying -&gt; Install Charles Root Certificate，安装后，应该能在home目录的.charles/ca/中找到charles-proxy-ssl-proxying-certificate.cer和charles-proxy-ssl-proxying-certificate.pem两个文件，对这种证书文件格式感兴趣的化，自行问搜索引擎，因为我们这里只是配置，就不补充这个知识了；</p>
-<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>转换格式：终端中执行openssl x509 -outform der -in charles-proxy-ssl-proxying-certificate.pem -out charles-proxy-ssl-proxying-certificate.crt；</p>
-<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p>在/usr/share/ca-certificates文件夹下新建一个目录charles，再将转换格式后得到的证书charles-proxy-ssl-proxying-certificate.crt复制到/usr/share/ca-certificates/charles 中；</p>
-<h2 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h2><p>在/etc/ca-certificates.conf这个配置文件的最后追加charles/charles-proxy-ssl-proxying-certificate.crt，用sudo update-ca-certificates更新证书，完成后发现/etc/ssl/certs目录中应该多了一个charles-proxy-ssl-proxying-certificate.pem文件，表示成功；</p>
-<h2 id="第六步"><a href="#第六步" class="headerlink" title="第六步"></a>第六步</h2><p>配置google浏览器，这时候你需要一个叫SwitchyOmega的代理管理插件，把http代理协议端口写成charles默认的8888，ip就填本地ip就好，另外在google浏览器的设置-&gt;高级-&gt;证书管理-&gt;授权中心中添加第四步中复制过的charles-proxy-ssl-proxying-certificate.crt证书，可以重复添加，会提示该证书已添加过，由此证明已经添加成功；</p>
-<h2 id="第七步"><a href="#第七步" class="headerlink" title="第七步"></a>第七步</h2><p>在Charles中Proxy -&gt; SSL Proxy Settings -&gt; SSL Proxy中设置一个Host为*,Port为443的Location，主要是用来代理所有的HTTPS请求；</p>
-<h2 id="第八步"><a href="#第八步" class="headerlink" title="第八步"></a>第八步</h2><p>以上完成的话，基本大功告成，在google浏览器中用SwitchyOmega切换至设置的charlse 8888端口的代理，访问一个网站试一试，应该就可以看到Charles能成功抓取HTTP的各种信息了；</p>
+            <h2 id="克隆代码"><a href="#克隆代码" class="headerlink" title="克隆代码"></a>克隆代码</h2><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git wine</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./install.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.weixin.work/deepin.com.weixin.work_2.4.16.1347deepin0_i386.deb</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i deepin.com.weixin.work_2.4.16.1347deepin0_i386.deb</span><br></pre></td></tr></table></figure>
+
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><ol>
+<li>中文乱码<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /opt/deepinwine/tools/run.sh</span><br></pre></td></tr></table></figure>
+修改<code>WINE_CMD=&quot;LC_ALL=zh_CN.UTF-8 deepin-wine&quot;</code></li>
+</ol>
 
         </div>
 
@@ -215,7 +219,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://lomect.com/charles/">http://lomect.com/charles/</a></span>
+                        <span><a href="http://lomect.com/ubuntu-wechat/">http://lomect.com/ubuntu-wechat/</a></span>
                     </p>
                 
                 
@@ -239,7 +243,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Test/"># Test</a>
+                        <a href="/tags/Ubuntu/"># Ubuntu</a>
+                    
+                        <a href="/tags/wine/"># wine</a>
                     
                         
                 </span>
@@ -252,10 +258,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/ubuntu-wechat/">ubuntu_wechat</a>
             
-            
-            <a class="next" rel="next" href="/pytest/">pytest</a>
+            <a class="next" rel="next" href="/charles/">charles</a>
             
         </section>
 
