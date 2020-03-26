@@ -4,7 +4,7 @@ date: 2020-03-23 23:25:43
 tags: 
     - Test
     - Python
-mathjax: true
+mathjax: false
 ---
 
 ### Install
