@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="lomect">
+
+
+
+
+    <meta name="keywords" content="Python">
+
+
+<title>pytest | Lomect</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Lomect&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Lomect&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">pytest</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">lomect</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">三月 23, 2020&nbsp;&nbsp;23:25:43</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pytest</span><br></pre></td></tr></table></figure>
+<h3 id="测试信息打印"><a href="#测试信息打印" class="headerlink" title="测试信息打印"></a>测试信息打印</h3><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-r:</span><br><span class="line">    -a 除了`pass`打印所有</span><br><span class="line">    -f 失败的信息</span><br><span class="line">    -E error</span><br><span class="line">    -s skipped</span><br><span class="line">    -x xfailed</span><br><span class="line">    -X xpass</span><br><span class="line">    -p pass</span><br><span class="line">    -P passed with output</span><br><span class="line">    -a all except pP</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>测试失败后自动调用<code>pdb</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pytest --pdb</span><br><span class="line">pytest -x --pdb &#x2F;&#x2F; 首次失败后调用pdb，然后结束测试进程</span><br><span class="line">pytest --pdb --maxfail&#x3D;3 &#x2F;&#x2F; 第三次失败的时候调用pdb</span><br><span class="line">pytest --trace &#x2F;&#x2F; 测试启动后立即调用pdb</span><br><span class="line"># 代码中可是以使用</span><br><span class="line">import pdb</span><br><span class="line">pdb.set_trace() &#x2F;&#x2F; 设置断点</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 JUnitXML 格式的文件<br>可以创建jenkins或其他集成测试软件能够读取的文件</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pytest --junitxml=path</span><br></pre></td></tr></table></figure></li>
+<li><p>可以在<code>pytest</code>的配置文件中设置junit_suite_name来配置测试结果中XML中的root名称</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[pytest]</span><br><span class="line">junit_suite_name = my_suite</span><br></pre></td></tr></table></figure></li>
+<li><p>junit xml规范中的时间是总时间，想要只显示测试时间，配置<code>junit_duration_report</code>:</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[pytest]</span><br><span class="line">junit_duration_report = call</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><ul>
+<li><p>标准<code>python</code>断言</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_f</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> f() == <span class="number">4</span>, <span class="string">"three is not eq four"</span></span><br></pre></td></tr></table></figure></li>
+<li><p>异常断言<br>可以在上下文中使用<code>pytest.raises</code>来对异常产生断言</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_zero_div</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> pytest.raises(ZeroDivisionError) <span class="keyword">as</span> zero:</span><br><span class="line">        <span class="number">1</span>/<span class="number">0</span></span><br><span class="line">        <span class="keyword">assert</span> <span class="string">"Error"</span> <span class="keyword">in</span> zero.value</span><br></pre></td></tr></table></figure>
+<p>可以使用<code>pytest.mark.xfail</code>中使用<code>raises</code>来检测测试用例是否因为抛出异常而失败</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.xfail(IndexError)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_f</span><span class="params">()</span>:</span></span><br><span class="line">    f()</span><br></pre></td></tr></table></figure>
+<p>使用<code>pytest.raises</code>更适合测试自己的代码故意引发的异常， 使用<code>@pytest.mark.xfail</code>和检查函数更适合那些记录的未被修复的bug<br>或者依赖项的异常</p>
+</li>
+<li><p>为断言增加描述<br>可以使用<code>pytest_assertrepr_compare(config, op, left, right)</code> 为自己的断言增加描述</p>
+</li>
+</ul>
+<h3 id="fixture"><a href="#fixture" class="headerlink" title="fixture"></a>fixture</h3><p><code>pytest.fixture</code>装饰的函数可以作为测试函数的入参</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.fixture</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_foo</span><span class="params">(foo)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> foo == <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fixfure: 依赖注入的最佳实践</li>
+</ul>
+<p><code>pytest</code>中的<code>fixture</code>允许测试函数轻松的接受和处理应用层对象的预处理，而不必关心<code>import/setup/teardown</code>这些细节，<br>这是依赖注入的一个极佳的示范，<code>fixture</code>是注入器，而测试函数是<code>fixture</code>的调用者</p>
+<ul>
+<li>conftest.py 共享fixture函数</li>
+</ul>
+<p>在实现测试用例的过程中，当发现需要使用来自多个文件的<code>fixture</code>函数的时候，可以将这些函数放入<code>conftest.py</code>文件中<br>这样就可以不用主动导入<code>fixture</code>函数，<code>pytest</code>会自动检索。可以使用<code>conftest.py</code>为每个目录实现插件。</p>
+<ul>
+<li>scope： 在类/模块/函数/整个测试用例中共享<code>fixture</code>实例</li>
+</ul>
+<p>scope： function， classs， module， package，session<br>scope越大，实例化越早。</p>
+<p>可以用<code>getatter</code>来获取到测试对象的上下文</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line">abs = <span class="string">"abs"</span></span><br><span class="line"><span class="meta">@pytest.fixture</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_abc</span><span class="params">(request)</span>:</span></span><br><span class="line">    param = getattr(request.module ,  <span class="string">"abs"</span>, <span class="string">"abc"</span>)</span><br><span class="line">    <span class="keyword">assert</span> param == <span class="string">"abs"</span></span><br></pre></td></tr></table></figure>
+<p>这里使用<code>request.module</code>属性来获取，模块中的<code>abs</code>属性。</p>
+<ul>
+<li>工厂化的<code>fixture</code></li>
+</ul>
+<p>工厂化的<code>fixture</code>可以在单一的测试函数中被多次调用，可以用于返回数据。<br>如果需要还可以携带参数，下面是一个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.fixture</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_record</span><span class="params">()</span>:</span></span><br><span class="line">    create_record = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_make_record</span><span class="params">(name)</span>:</span></span><br><span class="line">        record = models.Customer(name=name, recodes=[])</span><br><span class="line">        create_record.append(record)</span><br><span class="line">        <span class="keyword">return</span> record</span><br><span class="line">    <span class="keyword">yield</span>  _make_record</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> record <span class="keyword">in</span> create_record:</span><br><span class="line">        record.destory()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_record</span><span class="params">(make_record)</span>:</span></span><br><span class="line">    record1 = make_record(<span class="string">"lomect"</span>)</span><br><span class="line">    record2 = make_record(<span class="string">"lome"</span>)</span><br><span class="line">    record3 = make_record(<span class="string">"lo"</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fixtures 参数化</li>
+</ul>
+<p><code>fixture</code>函数可以进行参数话的调用，这种情况下，相关的测试函数会被多次调用。该功能可以用来以多种方式配置的组件编写详尽<br>功能测试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.fixture(scope="module", params=["lome","lory"])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_data</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">yield</span> request.param</span><br><span class="line">    print(<span class="string">"use data &#123;&#125;"</span>.format(request.param))</span><br><span class="line">    print(<span class="string">"deatory data"</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>在参数化的fixture中使用marks</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.fixture(params=[0, 1, pytest.param(2, marks=pytest.mark.skip)])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">data_set</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> request.param</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模块化<br>不仅测试函数可以使用<code>fixture</code>，<code>fixture</code>也可以使用<code>fixture</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.fixture(scope="module", params=["smtp.qq.com", "mail.python.org"])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smtp_connection</span><span class="params">(request)</span>:</span></span><br><span class="line">    smtp_connect = smtplib.SMTP(request.param, <span class="number">587</span>, timeout=<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">yield</span> smtp_connect</span><br><span class="line">    print(<span class="string">"&#123;&#125; &#123;&#125;"</span>, smtp_connect, request.param)</span><br><span class="line">    smtp_connect.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, smtp_connection)</span>:</span></span><br><span class="line">        self.smtp = smtp_connection</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.fixture(scope="module")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">app</span><span class="params">(smtp_connection)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> App(smtp_connection)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_smtp_connection</span><span class="params">(app)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> app.smtp</span><br></pre></td></tr></table></figure>
+<p>session作用域的fixture不能引用一个module作用域的fixture。 即作用域大的<code>fixture</code>不能引用一个作用域小的<code>fixture</code></p>
+</li>
+<li><p>fixture的自动分组    </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.fixture(scope="module", params=["mod1", "mod2"])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">modarg</span><span class="params">(request)</span>:</span></span><br><span class="line">    param = request.param</span><br><span class="line">    print(<span class="string">"\nstart mod &#123;&#125;"</span>.format(param))</span><br><span class="line">    <span class="keyword">yield</span> param</span><br><span class="line">    print(<span class="string">"\nteardown mod &#123;&#125;"</span>.format(param))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.fixture(scope="function", params=[1, 2])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">funcarg</span><span class="params">(request)</span>:</span></span><br><span class="line">    param = request.param</span><br><span class="line">    print(<span class="string">"\nstart func &#123;&#125;"</span>.format(param))</span><br><span class="line">    <span class="keyword">yield</span> param</span><br><span class="line">    print(<span class="string">"\nteardown func &#123;&#125;"</span>.format(param))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_0</span><span class="params">(funcarg)</span>:</span></span><br><span class="line">    print(<span class="string">"run test0 with funcarg &#123;&#125;"</span>.format(funcarg))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_1</span><span class="params">(modarg)</span>:</span></span><br><span class="line">    print(<span class="string">"run test1 with modarg &#123;&#125;"</span>.format(modarg))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_2</span><span class="params">(funcarg, modarg)</span>:</span></span><br><span class="line">    print(<span class="string">"run test2 with funcarg &#123;&#125; and modarg &#123;&#125;"</span>.format(funcarg, modarg))</span><br></pre></td></tr></table></figure>
+<p>日志如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">main.py::test_0[1] </span><br><span class="line">start func 1</span><br><span class="line">run test0 with funcarg 1</span><br><span class="line">PASSED</span><br><span class="line">teardown func 1</span><br><span class="line"></span><br><span class="line">main.py::test_0[2] </span><br><span class="line">start func 2</span><br><span class="line">run test0 with funcarg 2</span><br><span class="line">PASSED</span><br><span class="line">teardown func 2</span><br><span class="line"></span><br><span class="line">main.py::test_1[mod1] </span><br><span class="line">start mod mod1</span><br><span class="line">run test1 with modarg mod1</span><br><span class="line">PASSED</span><br><span class="line">main.py::test_2[mod1-1] </span><br><span class="line">start func 1</span><br><span class="line">run test2 with funcarg 1 and modarg mod1</span><br><span class="line">PASSED</span><br><span class="line">teardown func 1</span><br><span class="line"></span><br><span class="line">main.py::test_2[mod1-2] </span><br><span class="line">start func 2</span><br><span class="line">run test2 with funcarg 2 and modarg mod1</span><br><span class="line">PASSED</span><br><span class="line">teardown func 2</span><br><span class="line"></span><br><span class="line">main.py::test_1[mod2] </span><br><span class="line">teardown mod mod1</span><br><span class="line"></span><br><span class="line">start mod mod2</span><br><span class="line">run test1 with modarg mod2</span><br><span class="line">PASSED</span><br><span class="line">main.py::test_2[mod2-1] </span><br><span class="line">start func 1</span><br><span class="line">run test2 with funcarg 1 and modarg mod2</span><br><span class="line">PASSED</span><br><span class="line">teardown func 1</span><br><span class="line"></span><br><span class="line">main.py::test_2[mod2-2] </span><br><span class="line">start func 2</span><br><span class="line">run test2 with funcarg 2 and modarg mod2</span><br><span class="line">PASSED</span><br><span class="line">teardown func 2</span><br><span class="line"></span><br><span class="line">teardown mod mod2</span><br></pre></td></tr></table></figure>
+<p>从上面日志可以看出，大作用域的<code>fixtures</code>先被实例化，小作用域的<code>fixture</code>后被实例化，大作用域的<code>fixture</code>会将调用<br>它的作用域内的测试函数全部运行。</p>
+</li>
+<li><p>在class/module中使用fixture<br>在<code>class</code>中使用<code>fixture</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># conftest.py</span></span><br><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"><span class="keyword">import</span> tempfile</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.fixture()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cleandir</span><span class="params">()</span>:</span></span><br><span class="line">    newpath = tempfile.mkdtemp()</span><br><span class="line">    os.chdir(newpath)</span><br><span class="line"></span><br><span class="line"><span class="comment"># test_setenv.py</span></span><br><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.usefixtures("cleandir")</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestDirInit</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_cwd_start_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> os.listdir(os.getcwd()) == []</span><br><span class="line">        <span class="keyword">with</span> open(<span class="string">"myfile"</span>, <span class="string">"w"</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(<span class="string">"hello"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_cwd_again_start_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> os.listdir(os.getcwd()) == []</span><br></pre></td></tr></table></figure>
+<p><code>cleandir</code>会在每个测试用例执行之前被调用。<br>也可以执行多个<code>fixtures</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.usefixtures("cleandir", "otherfixture")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>可以使用mark的通用特性来为测试module指定fixture：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line">pytestmark = pytest.mark.usefixtures(<span class="string">"cleandir"</span>)</span><br></pre></td></tr></table></figure>
+<p>也可以把<code>fixture</code>写进配置文件中，对所有的测试用例起作用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># pytest.ini</span><br><span class="line">[pytest]</span><br><span class="line">usefixtures &#x3D; cleandir</span><br></pre></td></tr></table></figure>
+<p>另外<code>usefixtures</code>对<code>fixture</code>不起作用。</p>
+</li>
+<li><p>自动使用<code>fixtures</code><br>假设有一个数据库<code>fixture</code>，包含<code>begin/rollback/commit</code>等操作，我们希望在测试用例的前后分别调用数据库的事务处理和rollback操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DB</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.database = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">begin</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.database.append(name)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rollback</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.database.pop()</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.fixture(scope="module")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">db</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> DB()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="meta">    @pytest.fixture(autouse=True)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">transact</span><span class="params">(self, request, db)</span>:</span></span><br><span class="line">        db.begin(request.function.__name__)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line">        db.rollback()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_mod1</span><span class="params">(self, db)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> db.database == [<span class="string">"test_mod1"</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_mod2</span><span class="params">(self, db)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> db.database == [<span class="string">"test_mod2"</span>]</span><br></pre></td></tr></table></figure>
+<p>autouse的规则：       </p>
+<ol>
+<li><code>autouse fixture</code>遵循<code>scope</code>的定义，如果scope为session，则，fixture无论在哪里都只会执行一次，<br> 若定义为class，则表示每个class执行一次。</li>
+<li>若定义为module，则该模块所有的测试用例都会执行</li>
+<li>conftest中定义的autouse fixture 该目录下的测试用力都会执行</li>
+</ol>
+</li>
+<li><p>重写fixture<br>为了保证代码的可维护性可读性，可以重新定义fixture来重写，上层的fixture。</p>
+<ul>
+<li>在conftest层的重写</li>
+<li>在module层的重写</li>
+<li>直接使用参数话的重写<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"><span class="comment"># conftest.py</span></span><br><span class="line"><span class="meta">@pytest.fixture</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">username</span><span class="params">()</span>:</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"username"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># test_some.py</span></span><br><span class="line"><span class="meta">@pytest.mark.parametrize("username", ["some-username"])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_some</span><span class="params">(username)</span>:</span></span><br><span class="line">  <span class="keyword">assert</span> username == <span class="string">"some-username"</span></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_1_some</span><span class="params">(username)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> username == <span class="string">"username"</span></span><br></pre></td></tr></table></figure></li>
+<li>可以用参数化的fixture来重写非参数化/参数化的fixture</li>
+<li>也可以用非参数化的fixture来重写非参数化/参数化的fixture</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>lomect</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://lomect.com/pytest/">http://lomect.com/pytest/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Test/"># Test</a>
+                    
+                        <a href="/tags/Python/"># Python</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/charles/">charles</a>
+            
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© lomect | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
