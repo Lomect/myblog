@@ -14,7 +14,7 @@
     <meta name="keywords" content="Python">
 
 
-<title>ubuntu_wechat | Lomect</title>
+<title>pytest2 | Lomect</title>
 
 
 
@@ -175,7 +175,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">ubuntu_wechat</h1>
+            <h1 class="post-title">pytest2</h1>
             
                 <div class="post-meta">
                     
@@ -184,7 +184,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">三月 26, 2020&nbsp;&nbsp;22:30:18</a>
+                        Date: <a href="#">六月 19, 2020&nbsp;&nbsp;14:05:49</a>
                         </span>
                     
                     
@@ -193,18 +193,13 @@
         </header>
 
         <div class="post-content">
-            <h2 id="克隆代码"><a href="#克隆代码" class="headerlink" title="克隆代码"></a>克隆代码</h2><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git wine</span><br></pre></td></tr></table></figure>
+            <h2 id="pytest-nopython-测试实现逻辑"><a href="#pytest-nopython-测试实现逻辑" class="headerlink" title="pytest nopython 测试实现逻辑"></a>pytest nopython 测试实现逻辑</h2><h3 id="pytest-用例收集入口"><a href="#pytest-用例收集入口" class="headerlink" title="pytest 用例收集入口"></a>pytest 用例收集入口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def pytest_collect_file(path, parent):</span><br><span class="line">    pass</span><br><span class="line">    return YamlTestFile.from_parent(fspath&#x3D;path, parent&#x3D;parent)</span><br></pre></td></tr></table></figure>
+<p>这个钩子函数，是用例收集的入口，用来收集过滤测试用例文件</p>
+<h3 id="pytest-用例收集"><a href="#pytest-用例收集" class="headerlink" title="pytest 用例收集"></a>pytest 用例收集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class YamlTestFile(File):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">    def collect(self):</span><br><span class="line">        pass</span><br><span class="line">        yield TestCase.from_parent(self, name&#x3D;f&quot;&#123;name&#125;.&#123;_id&#125;&quot;, spec&#x3D;suite)</span><br></pre></td></tr></table></figure>
 
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./install.sh</span><br></pre></td></tr></table></figure>
-
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.weixin.work/deepin.com.weixin.work_2.4.16.1347deepin0_i386.deb</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i deepin.com.weixin.work_2.4.16.1347deepin0_i386.deb</span><br></pre></td></tr></table></figure>
-
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><ol>
-<li>中文乱码<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /opt/deepinwine/tools/run.sh</span><br></pre></td></tr></table></figure>
-修改<code>WINE_CMD=&quot;LC_ALL=zh_CN.UTF-8 deepin-wine&quot;</code></li>
-</ol>
+<p>File类，是真正的用例收集类， 需要实现collect方法， 并且返回TestCase实例。</p>
+<h3 id="pytest用例执行"><a href="#pytest用例执行" class="headerlink" title="pytest用例执行"></a>pytest用例执行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class TestCase(Item):</span><br><span class="line"></span><br><span class="line">    def __init__(self, name, parent, spec):</span><br><span class="line">        super().__init__(name, parent)</span><br><span class="line">        self.spec &#x3D; spec</span><br><span class="line"></span><br><span class="line">    def runtest(self) -&gt; None:</span><br><span class="line">        pass</span><br></pre></td></tr></table></figure>
+<p>Item类，是真正执行用例的类，pytest_runtest_call钩子函数会调用这个类的，runtest方法，运行用例。</p>
 
         </div>
 
@@ -219,7 +214,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://lomect.com/ubuntu-wechat/">http://lomect.com/ubuntu-wechat/</a></span>
+                        <span><a href="http://lomect.com/pytest2/">http://lomect.com/pytest2/</a></span>
                     </p>
                 
                 
@@ -243,9 +238,11 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Ubuntu/"># Ubuntu</a>
+                        <a href="/tags/pytest/"># pytest</a>
                     
-                        <a href="/tags/wine/"># wine</a>
+                        <a href="/tags/test/"># test</a>
+                    
+                        <a href="/tags/python/"># python</a>
                     
                         
                 </span>
@@ -258,10 +255,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/git/">git</a>
             
-            
-            <a class="next" rel="next" href="/charles/">charles</a>
+            <a class="next" rel="next" href="/git/">git</a>
             
         </section>
 
