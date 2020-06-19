@@ -1,0 +1,3 @@
+[submodule "themes/hexo-theme-Chic"]
+	path = themes/hexo-theme-Chic
+	url = https://github.com/Lomect/hexo-theme-Chic.git
