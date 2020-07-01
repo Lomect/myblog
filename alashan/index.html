@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="lomect">
+
+
+
+
+    <meta name="keywords" content="Python">
+
+
+<title>alashan | Lomect</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Lomect&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Lomect&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">alashan</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">lomect</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">六月 28, 2020&nbsp;&nbsp;11:18:13</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>阿拉善–蒙古语，意为“五彩斑斓之地”。</p>
+<h1 id="进入银川"><a href="#进入银川" class="headerlink" title="进入银川"></a>进入银川</h1><p>24号6点半，从睡梦中缓缓醒来，洗漱完毕后，出门买了早餐。夏天的杭州，雨说下就下，7点多，下起了中雨，淅淅沥沥,拿着许多行李，就这么出发了。乘上机场大巴来到机场和我的小伙伴汇合后，便上了飞机往银川飞去。想象自己在电视中看到的沙漠。内心还有点小兴奋。想着沙漠给我的惊喜，飞机便给了我一个惊吓。我是个很惜命的人（说白了就是胆小）。结果在空中遇见了气流，雷暴，其实当时整个人的手心都出汗了。想着飞机如果真出事了可咋办呢。最后历经曲折，飞机还是平安着陆。到达银川已经是晚上10点，银川没有杭州的闷热（可能是晚上到的，没那么热），与杭州相比就像一个普通县城一样。接着去看了小天安门，不知道其中的故事，只是看到它特别新，特别小巧。后经过百度知道，其实名叫做南薰门，当地人喜欢称之为“南门楼“，历史悠久，经过几次修缮。</p>
+<p><img src="/image/alashan/tiananmen.jpg" alt="小天安门"></p>
+<h1 id="进入沙漠"><a href="#进入沙漠" class="headerlink" title="进入沙漠"></a>进入沙漠</h1><p>25日早上7点出发，带上物资、装备、带着激动的心情，坐上了前往沙漠的大巴车。当时的心情就像是要见心仪的姑娘一样。有期待，也有担心。期待沙漠的美丽，担心它没有我记忆中那么美。大巴车缓缓前行， 看到一条山脉，领队跟我们解释，这是贺兰山，就是因为它的阻隔，才有了宁夏塞上江南的美丽风景，沿途绿色慢慢变少，地面从土黄慢慢向金黄转变，直到满眼的金黄色。我看到沙漠的样子跟我脑海里的样子慢慢重合。我便来到了阿拉善，内心充满兴奋，比我记忆里的更加美丽，放眼望去一片金黄，偶尔有几团绿色点缀。看着沙漠里一望无际的黄沙，和那条看不到头的酷似黑色长龙的公路，穿戴好装备，背好行囊，迈出了进入沙漠的第一步。</p>
+<p><img src="/image/alashan/in.jpg" alt="入沙"></p>
+<h1 id="徒步第一天"><a href="#徒步第一天" class="headerlink" title="徒步第一天"></a>徒步第一天</h1><p>踩在松软的沙子上，内心还有点不真实的感觉，原来沙漠里真的全是沙子，当时其实还在想，沙漠里的沙子用来盖房子可以省一大比钱。踩在沙地上，软绵绵的，特别舒服，我想在沙漠里走几天回去，怕是出去就会嫌地面太硬。想想自己每天为跑步场地发愁（怕伤膝盖），在这里怕是不会伤到膝盖。看着满地的黄沙被太阳照得金黄，感觉处在一副画里。</p>
+<p><img src="/image/alashan/firstday1.jpg" alt="第一天"></p>
+<p>随着沙漠的深入，慢慢的便分不清楚东西南北，手机也没了信号，兴奋的心情随着身体的疲劳，慢慢的消失殆尽。但眼前的景色有让人觉得不虚此行。</p>
+<p><img src="/image/alashan/firstday2.jpg" alt="第一天1"></p>
+<p>直到感到口干舌燥，自己带的水慢慢的喝完，脚踝慢慢的变酸，我们进入了沙漠里的第一次休息，大家都围坐在物资车的影子下，因为只有这里，才会有一丝不被太阳照射到的阴凉。领取向导发的干粮(一个油饼，一包榨菜，一个鸡蛋，一根火腿，一包辣条)，开始进食，其实有许多养尊处优的人是不想吃的，但是条件就是这个条件，不吃下午就没力气继续走路，所以大家都开始进食。下午1点，在大家的极力催促下，领队抗不住大家的催促，再次出发。走在路上，等到两点多，我才逐渐意识到领队让大家多休息会儿的深意，沙漠里2点左右的太阳最毒最热。带着面巾，鼻息喷在眼上，让我的眼睛特别的灼热。打开眼药水滴了一滴，才发现眼药水的温度比眼睛都高，无力叹息继续前进。慢慢的被这柔软的沙子惹恼，因为每一步都会踩一个坑，不用点力气根本就走不动，直到这时才感觉在沙漠里行走不比爬山什么的简单。</p>
+<p>下图是跟小伙伴，在休息的地方喝汽水，沙漠里的汽水不是一般好喝。</p>
+<p><img src="/image/alashan/firstday3.jpg" alt="第一天2"></p>
+<p>晚餐是丰盛的，向导给我们准备了鸡汤，跟几个小菜，米饭。挺好吃，可能是饿了。不过吃饭之前需要先把帐篷搭好第一天搭帐篷，直接就把防潮垫放了下去，还把睡袋放了进去，晚上睡觉整个帐篷热的要死。第二天是等到晚上睡觉的时候才铺上就好了很多。晚上沙漠里最可怕的生物是蚊子。到处都是肆无忌惮的蚊子，往你脸上身上扑，晚上在帐篷里听到外面蚊子的声音真是让人毛骨悚然。沙漠里晚上特别冷，穿上短袖冻得人发抖。</p>
+<p><img src="/image/alashan/firstday4.jpg" alt="帐篷"></p>
+<h1 id="徒步第二天"><a href="#徒步第二天" class="headerlink" title="徒步第二天"></a>徒步第二天</h1><p>沙漠里的绿洲，以前不知道，现在在绿洲旁经过发现绿洲里的水，全是盐碱水，不能食用。远观还是很漂亮的。</p>
+<p>下面是月亮湖：</p>
+<p><img src="/image/alashan/yuelianghu.jpg" alt="月亮湖"></p>
+<p>第二天的行程无疑是辛苦的，从早上一直走到晚上，一天在沙漠里走了18KM，沙漠里走着，感觉自己的鞋底都要融化了。整个下午感觉都在靠意志在坚持，下午一共喝了3瓶水。但是还是感觉口渴，眼睛被热的不想睁开，脚上被烫的不想站在地上，连看风景的心思都没有了。</p>
+<p><img src="/image/alashan/day2.jpg" alt="第二天"></p>
+<p>终于在四点结束了一天的行程，晚上向导为我们带来了烤羊肉，吃着绵羊肉，真的是香，一点羊膻味都没有，感觉这是我吃过最好吃的羊肉了。还有羊汤，羊汤里是没有放盐的，但是喝着味道却一点都不腥，喝着喝着便有了丝丝咸味融入到浓香的肉汤中。</p>
+<h1 id="冲沙"><a href="#冲沙" class="headerlink" title="冲沙"></a>冲沙</h1><p>第三天是离别的日子，我们的行程是冲沙，阿拉善左旗越野赛第一名带我们在沙漠里奔驰。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>lomect</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://lomect.com/alashan/">http://lomect.com/alashan/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%B8%B8%E8%AE%B0/"># 游记</a>
+                    
+                        <a href="/tags/%E9%98%BF%E6%8B%89%E5%96%84/"># 阿拉善</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/rust-cookbook-algorithms/">rust-cookbook-Algorithms</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© lomect | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
