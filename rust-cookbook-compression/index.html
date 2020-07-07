@@ -14,7 +14,7 @@
     <meta name="keywords" content="Python">
 
 
-<title>rust-cookbook-commondline | Lomect</title>
+<title>rust-cookbook-compression | Lomect</title>
 
 
 
@@ -175,7 +175,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">rust-cookbook-commondline</h1>
+            <h1 class="post-title">rust-cookbook-compression</h1>
             
                 <div class="post-meta">
                     
@@ -184,7 +184,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">七月 1, 2020&nbsp;&nbsp;17:00:00</a>
+                        Date: <a href="#">七月 2, 2020&nbsp;&nbsp;8:57:46</a>
                         </span>
                     
                     
@@ -193,10 +193,11 @@
         </header>
 
         <div class="post-content">
-            <h1 id="解析命令行参数"><a href="#解析命令行参数" class="headerlink" title="解析命令行参数"></a>解析命令行参数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">use clap::&#123;App, Arg&#125;;</span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    let matchs &#x3D; App::new(&quot;My Test Program&quot;)</span><br><span class="line">        .version(&quot;0.1.0&quot;)</span><br><span class="line">        .author(&quot;lome&quot;)</span><br><span class="line">        .about(&quot;from lomect&quot;)</span><br><span class="line">        .arg(Arg::with_name(&quot;name&quot;)</span><br><span class="line">            .short(&quot;a&quot;)</span><br><span class="line">            .long(&quot;name&quot;)</span><br><span class="line">            .takes_value(true)</span><br><span class="line">            .help(&quot;A cool file&quot;)</span><br><span class="line">        )</span><br><span class="line">        .arg(Arg::with_name(&quot;num&quot;)</span><br><span class="line">            .short(&quot;n&quot;)</span><br><span class="line">            .long(&quot;number&quot;)</span><br><span class="line">            .takes_value(true)</span><br><span class="line">            .help(&quot;a cool num&quot;)</span><br><span class="line">        )</span><br><span class="line">        .get_matches();</span><br><span class="line">    let myname &#x3D; matchs.value_of(&quot;name&quot;).unwrap_or(&quot;lome&quot;);</span><br><span class="line">    println!(&quot;The name is &#123;&#125;&quot;, myname);</span><br><span class="line"></span><br><span class="line">    let num_str &#x3D; matchs.value_of(&quot;num&quot;);</span><br><span class="line">    match num_str &#123;</span><br><span class="line">        None &#x3D;&gt; println!(&quot;Not a Num&quot;),</span><br><span class="line">        Some(n) &#x3D;&gt; &#123;</span><br><span class="line">            match n.parse::&lt;i32&gt;() &#123;</span><br><span class="line">                Ok(n) &#x3D;&gt; println!(&quot;The Num is &#123;&#125;&quot;, n),</span><br><span class="line">                Err(_) &#x3D;&gt; println!(&quot;Not get a num&quot;),</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h1 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">use std::fs::File;</span><br><span class="line">use flate2::read::GzDecoder;</span><br><span class="line">use tar::Archive;</span><br><span class="line"></span><br><span class="line">fn main() -&gt; Result&lt;(), std::io::Error&gt; &#123;</span><br><span class="line">    let path &#x3D; &quot;..&#x2F;archive.tar.gz&quot;;</span><br><span class="line"></span><br><span class="line">    let tar_gz &#x3D; File::open(path)?;</span><br><span class="line">    let tar &#x3D; GzDecoder::new(tar_gz);</span><br><span class="line">    let mut archive &#x3D; Archive::new(tar);</span><br><span class="line">    archive.unpack(&quot;.&#x2F;backup&quot;);</span><br><span class="line"></span><br><span class="line">    Ok(())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="美标终端"><a href="#美标终端" class="headerlink" title="美标终端"></a>美标终端</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">use ansi_term::&#123;Color, Style&#125;;</span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;This is in color &#123;&#125;, in color &#123;&#125;, in color &#123;&#125;&quot;,</span><br><span class="line">             Color::Red.paint(&quot;Red&quot;),</span><br><span class="line">             Color::Blue.paint(&quot;Blue&quot;),</span><br><span class="line">             Color::Green.paint(&quot;Green&quot;));</span><br><span class="line">    println!(&quot;This is blod &#123;&#125;&quot;, Style::new().bold().paint(&quot;Bold&quot;));</span><br><span class="line">    println!(&quot;this is color bold &#123;&#125;&quot;, Color::Red.bold().paint(&quot;Color&quot;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="压缩文件夹"><a href="#压缩文件夹" class="headerlink" title="压缩文件夹"></a>压缩文件夹</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">use std::fs::File;</span><br><span class="line">use flate2::Compression;</span><br><span class="line">use flate2::write::GzEncoder;</span><br><span class="line"></span><br><span class="line">fn main() -&gt; Result&lt;(), std::io::Error&gt; &#123;</span><br><span class="line">    let tar_gz &#x3D; File::create(&quot;.&#x2F;archive.har.gz&quot;)?;</span><br><span class="line">    let enc &#x3D; GzEncoder::new(tar_gz, Compression::default());</span><br><span class="line">    let mut tar &#x3D; tar::Builder::new(enc);</span><br><span class="line">    tar.append_dir_all(&quot;.&#x2F;src&quot;, &quot;.&#x2F;backup&quot;)?;</span><br><span class="line"></span><br><span class="line">    Ok(())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h1 id="解压缩压缩包，同时从路径中删除前缀"><a href="#解压缩压缩包，同时从路径中删除前缀" class="headerlink" title="解压缩压缩包，同时从路径中删除前缀"></a>解压缩压缩包，同时从路径中删除前缀</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">use error_chain::error_chain;</span><br><span class="line">use std::fs::File;</span><br><span class="line">use std::path::PathBuf;</span><br><span class="line">use flate2::read::GzDecoder;</span><br><span class="line">use tar::Archive;</span><br><span class="line"></span><br><span class="line">error_chain! &#123;</span><br><span class="line">    foreign_links &#123;</span><br><span class="line">        Io(std::io::Error);</span><br><span class="line">        StripPrefixError(std::path::StripPrefixError);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn main() -&gt; Result&lt;()&gt; &#123;</span><br><span class="line">    let file &#x3D; File::open(&quot;.&#x2F;archive.har.gz&quot;)?;</span><br><span class="line">    let mut archive &#x3D; Archive::new(GzDecoder::new(file));</span><br><span class="line">    let prefix &#x3D; &quot;src&quot;;</span><br><span class="line">    archive</span><br><span class="line">        .entries()?</span><br><span class="line">        .filter_map(|e| e.ok())</span><br><span class="line">        .map(|mut entry| -&gt; Result&lt;PathBuf&gt; &#123;</span><br><span class="line">            let path &#x3D; entry.path()?.strip_prefix(prefix)?.to_owned();</span><br><span class="line">            entry.unpack(&amp;path)?;</span><br><span class="line">            Ok(path)</span><br><span class="line">        &#125;)</span><br><span class="line">        .filter_map(|e| e.ok())</span><br><span class="line">        .for_each(|x| println!(&quot;&gt; &#123;&#125;&quot;, x.display()));</span><br><span class="line"></span><br><span class="line">    Ok(())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
 
         
@@ -210,7 +211,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://lomect.com/rust-cookbook-commondline/">http://lomect.com/rust-cookbook-commondline/</a></span>
+                        <span><a href="http://lomect.com/rust-cookbook-compression/">http://lomect.com/rust-cookbook-compression/</a></span>
                     </p>
                 
                 
@@ -251,10 +252,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/rust-cookbook-compression/">rust-cookbook-compression</a>
+                <a class="prev" rel="prev" href="/rust-cookbook-concurrency/">rust-cookbook-concurrency</a>
             
             
-            <a class="next" rel="next" href="/alashan/">alashan</a>
+            <a class="next" rel="next" href="/rust-cookbook-commondline/">rust-cookbook-commondline</a>
             
         </section>
 
