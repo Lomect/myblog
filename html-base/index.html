@@ -14,7 +14,7 @@
     <meta name="keywords" content="Python">
 
 
-<title>rust_primer_1 | Lomect</title>
+<title>html_base | Lomect</title>
 
 
 
@@ -175,7 +175,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">rust_primer_1</h1>
+            <h1 class="post-title">html_base</h1>
             
                 <div class="post-meta">
                     
@@ -184,7 +184,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">八月 28, 2020&nbsp;&nbsp;15:05:44</a>
+                        Date: <a href="#">九月 10, 2020&nbsp;&nbsp;9:19:35</a>
                         </span>
                     
                     
@@ -193,7 +193,20 @@
         </header>
 
         <div class="post-content">
-            <h2 id="guess-game"><a href="#guess-game" class="headerlink" title="guess game"></a>guess game</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">use std::io;</span><br><span class="line">use rand::Rng;</span><br><span class="line">use std::cmp::Ordering;</span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    let scret_number: u32 &#x3D; rand::thread_rng().gen_range(1,100);</span><br><span class="line">    println!(&quot;Guess The Number!&quot;);</span><br><span class="line">    println!(&quot;Please input your guess:&quot;);</span><br><span class="line">    loop &#123;</span><br><span class="line">        let mut guess &#x3D; String::new();</span><br><span class="line">        io::stdin()</span><br><span class="line">            .read_line(&amp;mut guess)</span><br><span class="line">            .expect(&quot;Fail To Read Line&quot;);</span><br><span class="line">        let guess: u32 &#x3D; match guess.trim().parse::&lt;u32&gt;() &#123;</span><br><span class="line">            Ok(num) &#x3D;&gt; num,</span><br><span class="line">            Err(_) &#x3D;&gt; continue,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        match guess.cmp(&amp;scret_number) &#123;</span><br><span class="line">            Ordering::Equal &#x3D;&gt; &#123;</span><br><span class="line">                println!(&quot;You Win &#123;&#125;&quot;, guess);</span><br><span class="line">                break;</span><br><span class="line">            &#125;,</span><br><span class="line">            Ordering::Greater &#x3D;&gt; &#123;</span><br><span class="line">                println!(&quot;You Greater!&quot;);</span><br><span class="line">            &#125;,</span><br><span class="line">            Ordering::Less &#x3D;&gt; &#123;</span><br><span class="line">                println!(&quot;You Less!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h2 id="基本的Html"><a href="#基本的Html" class="headerlink" title="基本的Html"></a>基本的Html</h2><p>基本的html的数据结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;A&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;B&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;C&lt;&#x2F;li&gt;</span><br><span class="line">    &lt;&#x2F;ul&gt;</span><br><span class="line">    &lt;ol&gt;</span><br><span class="line">        &lt;li&gt;D&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;E&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;F&lt;&#x2F;li&gt;</span><br><span class="line">    &lt;&#x2F;ol&gt;</span><br><span class="line">    &lt;h2 style&#x3D;&quot;text-align: center;&quot;&gt;A Heading&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        kalalalal</span><br><span class="line">    &lt;&#x2F;p&gt;</span><br><span class="line">    &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;www.baidu.com&quot;&gt;lala&lt;&#x2F;a&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;span&gt; lalla1&lt;&#x2F;span&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;span&gt;</span><br><span class="line">        &lt;span style&#x3D;&quot;color:brown;margin-left:800px&quot;&gt;Home&lt;&#x2F;span&gt;:</span><br><span class="line">    &lt;ins&gt;&lt;span&gt;15757164314&lt;&#x2F;span&gt;&lt;&#x2F;ins&gt;</span><br><span class="line">    &lt;&#x2F;span&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;img src&#x3D;&quot;&#x2F;home&#x2F;lome&#x2F;Pictures&#x2F;aaa.png&quot; alt&#x3D;&quot;&quot; width&#x3D;&quot;258&quot; height&#x3D;&quot;480&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;table cellpadding&#x3D;&quot;&quot; border&#x3D;&quot;1&quot;&gt;</span><br><span class="line">        &lt;thead&gt;</span><br><span class="line">            &lt;tr&gt;</span><br><span class="line">                &lt;th&gt;</span><br><span class="line">                    Name</span><br><span class="line">                &lt;&#x2F;th&gt;</span><br><span class="line">                &lt;th&gt;</span><br><span class="line">                    Phone</span><br><span class="line">                &lt;&#x2F;th&gt;</span><br><span class="line">            &lt;&#x2F;tr&gt;</span><br><span class="line">        &lt;&#x2F;thead&gt;</span><br><span class="line">        &lt;tbody&gt;</span><br><span class="line">            &lt;tr&gt;</span><br><span class="line">                &lt;td&gt;</span><br><span class="line">                    lome</span><br><span class="line">                &lt;&#x2F;td&gt;</span><br><span class="line">                &lt;td&gt;</span><br><span class="line">                    15757164314</span><br><span class="line">                &lt;&#x2F;td&gt;</span><br><span class="line">            &lt;&#x2F;tr&gt;</span><br><span class="line">        &lt;&#x2F;tbody&gt;</span><br><span class="line">    &lt;&#x2F;table&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ul  无序表单</li>
+<li>ol  有序表单</li>
+<li>img 图片</li>
+<li>a   超链接</li>
+<li>table 表单</li>
+<li>th  表头</li>
+<li>td  表元素</li>
+<li>br  下一行</li>
+</ul>
+
         </div>
 
         
@@ -207,7 +220,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://lomect.com/rust-primer-1/">http://lomect.com/rust-primer-1/</a></span>
+                        <span><a href="http://lomect.com/html-base/">http://lomect.com/html-base/</a></span>
                     </p>
                 
                 
@@ -231,11 +244,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Rust/"># Rust</a>
+                        <a href="/tags/Html/"># Html</a>
                     
-                        <a href="/tags/2020-08/"># 2020-08</a>
-                    
-                        <a href="/tags/Primer/"># Primer</a>
+                        <a href="/tags/2020-09/"># 2020-09</a>
                     
                         
                 </span>
@@ -248,10 +259,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/hexo-deploy/">hexo_deploy</a>
+                <a class="prev" rel="prev" href="/html-style/">html_style</a>
             
             
-            <a class="next" rel="next" href="/rust-learn-life/">rust-learn-life</a>
+            <a class="next" rel="next" href="/actix-web-base/">actix-web-base</a>
             
         </section>
 
