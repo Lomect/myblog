@@ -14,7 +14,7 @@
     <meta name="keywords" content="Python">
 
 
-<title>rust_primer_1 | Lomect</title>
+<title>hexo_deploy | Lomect</title>
 
 
 
@@ -175,7 +175,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">rust_primer_1</h1>
+            <h1 class="post-title">hexo_deploy</h1>
             
                 <div class="post-meta">
                     
@@ -184,7 +184,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">八月 28, 2020&nbsp;&nbsp;15:05:44</a>
+                        Date: <a href="#">八月 28, 2020&nbsp;&nbsp;16:04:28</a>
                         </span>
                     
                     
@@ -193,7 +193,7 @@
         </header>
 
         <div class="post-content">
-            <h2 id="guess-game"><a href="#guess-game" class="headerlink" title="guess game"></a>guess game</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">use std::io;</span><br><span class="line">use rand::Rng;</span><br><span class="line">use std::cmp::Ordering;</span><br><span class="line"></span><br><span class="line">fn main() &#123;</span><br><span class="line">    let scret_number: u32 &#x3D; rand::thread_rng().gen_range(1,100);</span><br><span class="line">    println!(&quot;Guess The Number!&quot;);</span><br><span class="line">    println!(&quot;Please input your guess:&quot;);</span><br><span class="line">    loop &#123;</span><br><span class="line">        let mut guess &#x3D; String::new();</span><br><span class="line">        io::stdin()</span><br><span class="line">            .read_line(&amp;mut guess)</span><br><span class="line">            .expect(&quot;Fail To Read Line&quot;);</span><br><span class="line">        let guess: u32 &#x3D; match guess.trim().parse::&lt;u32&gt;() &#123;</span><br><span class="line">            Ok(num) &#x3D;&gt; num,</span><br><span class="line">            Err(_) &#x3D;&gt; continue,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        match guess.cmp(&amp;scret_number) &#123;</span><br><span class="line">            Ordering::Equal &#x3D;&gt; &#123;</span><br><span class="line">                println!(&quot;You Win &#123;&#125;&quot;, guess);</span><br><span class="line">                break;</span><br><span class="line">            &#125;,</span><br><span class="line">            Ordering::Greater &#x3D;&gt; &#123;</span><br><span class="line">                println!(&quot;You Greater!&quot;);</span><br><span class="line">            &#125;,</span><br><span class="line">            Ordering::Less &#x3D;&gt; &#123;</span><br><span class="line">                println!(&quot;You Less!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h2 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
         </div>
 
         
@@ -207,7 +207,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://lomect.com/rust-primer-1/">http://lomect.com/rust-primer-1/</a></span>
+                        <span><a href="http://lomect.com/hexo-deploy/">http://lomect.com/hexo-deploy/</a></span>
                     </p>
                 
                 
@@ -231,11 +231,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Rust/"># Rust</a>
-                    
                         <a href="/tags/2020-08/"># 2020-08</a>
                     
-                        <a href="/tags/Primer/"># Primer</a>
+                        <a href="/tags/HEXO/"># HEXO</a>
                     
                         
                 </span>
@@ -248,10 +246,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/hexo-deploy/">hexo_deploy</a>
+                <a class="prev" rel="prev" href="/actix-web-base/">actix-web-base</a>
             
             
-            <a class="next" rel="next" href="/rust-learn-life/">rust-learn-life</a>
+            <a class="next" rel="next" href="/rust-primer-1/">rust_primer_1</a>
             
         </section>
 
