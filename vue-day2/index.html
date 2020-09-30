@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="lomect">
+
+
+
+
+    <meta name="keywords" content="Python">
+
+
+<title>vue-day2 | Lomect</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Lomect&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Lomect&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">vue-day2</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">lomect</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">九月 16, 2020&nbsp;&nbsp;18:10:26</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="组件基础"><a href="#组件基础" class="headerlink" title="组件基础"></a>组件基础</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title style&#x3D;&quot;color: brown;&quot;&gt;example&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;vue&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;app&quot;&gt;</span><br><span class="line">            &lt;button-counter&gt;&lt;&#x2F;button-counter&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            Vue.component(&quot;button-counter&quot;, &#123;</span><br><span class="line">                data: function() &#123;</span><br><span class="line">                    return &#123;</span><br><span class="line">                        counter: 0</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                template: &#39;&lt;button v-on:click&#x3D;&quot;counter++&quot;&gt;ADD &#123;&#123; counter &#125;&#125;&lt;&#x2F;button&gt;&#39;</span><br><span class="line">            &#125;)</span><br><span class="line">            new Vue(&#123;</span><br><span class="line">                el: &#39;.app&#39;</span><br><span class="line">            &#125;)</span><br><span class="line">        &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="组件复用"><a href="#组件复用" class="headerlink" title="组件复用"></a>组件复用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title style&#x3D;&quot;color: brown;&quot;&gt;example&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;vue&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;app&quot;&gt;</span><br><span class="line">            &lt;button-counter&gt;&lt;&#x2F;button-counter&gt;</span><br><span class="line">            &lt;button-counter&gt;&lt;&#x2F;button-counter&gt;</span><br><span class="line">            &lt;button-counter&gt;&lt;&#x2F;button-counter&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            Vue.component(&quot;button-counter&quot;, &#123;</span><br><span class="line">                data: function() &#123;</span><br><span class="line">                    return &#123;</span><br><span class="line">                        counter: 0</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                template: &#39;&lt;button v-on:click&#x3D;&quot;counter++&quot;&gt;ADD &#123;&#123; counter &#125;&#125;&lt;&#x2F;button&gt;&#39;</span><br><span class="line">            &#125;)</span><br><span class="line">            new Vue(&#123;</span><br><span class="line">                el: &#39;.app&#39;</span><br><span class="line">            &#125;)</span><br><span class="line">        &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="同过prop向子组件传值"><a href="#同过prop向子组件传值" class="headerlink" title="同过prop向子组件传值"></a>同过prop向子组件传值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title style&#x3D;&quot;color: brown;&quot;&gt;example&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;vue&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;app&quot;&gt;</span><br><span class="line">        &lt;ol&gt;</span><br><span class="line">            &lt;todo-item todo&#x3D;&quot;lome&quot;&gt;&lt;&#x2F;todo-item&gt;</span><br><span class="line">        &lt;&#x2F;ol&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        Vue.component(&#39;todo-item&#39;, &#123;</span><br><span class="line">            props: [&#39;todo&#39;],</span><br><span class="line">            template: &#39;&lt;h3&gt;&#123;&#123; todo &#125;&#125;&lt;&#x2F;h3&gt;&#39;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        var app &#x3D; new Vue(&#123;</span><br><span class="line">            el: &#39;.app&#39;,</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用v-bind动态传递prop信息"><a href="#使用v-bind动态传递prop信息" class="headerlink" title="使用v-bind动态传递prop信息"></a>使用v-bind动态传递prop信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title style&#x3D;&quot;color: brown;&quot;&gt;example&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;vue&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;app&quot;&gt;</span><br><span class="line">        &lt;ol&gt;</span><br><span class="line">            &lt;todo-item v-for&#x3D;&quot;post in posts&quot; v-bind:key&#x3D;&quot;post.id&quot; v-bind:todo&#x3D;&quot;post.title&quot;&gt;&lt;&#x2F;todo-item&gt;</span><br><span class="line">        &lt;&#x2F;ol&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        Vue.component(&#39;todo-item&#39;, &#123;</span><br><span class="line">            props: [&#39;todo&#39;],</span><br><span class="line">            template: &#39;&lt;h3&gt;&#123;&#123; todo &#125;&#125;&lt;&#x2F;h3&gt;&#39;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        var app &#x3D; new Vue(&#123;</span><br><span class="line">            el: &#39;.app&#39;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                posts: [&#123;</span><br><span class="line">                    id: 1,</span><br><span class="line">                    title: &quot;lome&quot;</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    id: 2,</span><br><span class="line">                    title: &quot;lory&quot;</span><br><span class="line">                &#125;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="把对象传入组件"><a href="#把对象传入组件" class="headerlink" title="把对象传入组件"></a>把对象传入组件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title style&#x3D;&quot;color: brown;&quot;&gt;example&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;vue&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;app&quot;&gt;</span><br><span class="line">        &lt;todo-item v-for&#x3D;&quot;post in posts&quot; v-bind:key&#x3D;&quot;post.id&quot; v-bind:todo&#x3D;&quot;post&quot;&gt;&lt;&#x2F;todo-item&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        Vue.component(&#39;todo-item&#39;, &#123;</span><br><span class="line">            props: [&#39;todo&#39;],</span><br><span class="line">            template: &#96;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;h3&gt;&#123;&#123; todo.title &#125;&#125;&lt;&#x2F;h3&gt;</span><br><span class="line">                &lt;div v-html&#x3D;&quot;todo.content&quot;&gt; &#123;&#123; todo.content &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &#96;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        var app &#x3D; new Vue(&#123;</span><br><span class="line">            el: &#39;.app&#39;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                posts: [&#123;</span><br><span class="line">                    id: 1,</span><br><span class="line">                    title: &quot;lome&quot;,</span><br><span class="line">                    content: &#39;hello lome&#39;</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    id: 2,</span><br><span class="line">                    title: &quot;lory&quot;,</span><br><span class="line">                    content: &quot;hello lory&quot;</span><br><span class="line">                &#125;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="监听子组件事件"><a href="#监听子组件事件" class="headerlink" title="监听子组件事件"></a>监听子组件事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title style&#x3D;&quot;color: brown;&quot;&gt;example&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;vue&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;app&quot; :style&#x3D;&quot;&#123; fontSize: postFontSize + &#39;em&#39;&#125;&quot;&gt;</span><br><span class="line">        &lt;todo-item v-for&#x3D;&quot;post in posts&quot; v-bind:key&#x3D;&quot;post.id&quot; v-bind:todo&#x3D;&quot;post&quot; v-on:enlarge-text&#x3D;&quot;postFontSize +&#x3D; 0.1&quot;&gt;&lt;&#x2F;todo-item&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        Vue.component(&#39;todo-item&#39;, &#123;</span><br><span class="line">            props: [&#39;todo&#39;],</span><br><span class="line">            template: &#96;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;h3&gt;&#123;&#123; todo.title &#125;&#125;&lt;&#x2F;h3&gt;</span><br><span class="line">                &lt;div v-html&#x3D;&quot;todo.content&quot;&gt; &#123;&#123; todo.content &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">                &lt;button v-on:click&#x3D;&quot;$emit(&#39;enlarge-text&#39;)&quot;&gt;</span><br><span class="line">                    Add Size</span><br><span class="line">                &lt;&#x2F;button&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &#96;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        var app &#x3D; new Vue(&#123;</span><br><span class="line">            el: &#39;.app&#39;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                posts: [&#123;</span><br><span class="line">                    id: 1,</span><br><span class="line">                    title: &quot;lome&quot;,</span><br><span class="line">                    content: &#39;hello lome&#39;</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    id: 2,</span><br><span class="line">                    title: &quot;lory&quot;,</span><br><span class="line">                    content: &quot;hello lory&quot;</span><br><span class="line">                &#125;],</span><br><span class="line">                postFontSize: 1</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+<p><code>em</code>: 相对长度单位<br><code>$emit(&#39;function&#39;, ..arg)</code>: 调用方法，并带参数arg</p>
+<h2 id="使用事件抛出一个值"><a href="#使用事件抛出一个值" class="headerlink" title="使用事件抛出一个值"></a>使用事件抛出一个值</h2><p>使用addSize来加大字体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title style&#x3D;&quot;color: brown;&quot;&gt;example&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;vue&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;app&quot; :style&#x3D;&quot;&#123; fontSize: postFontSize + &#39;em&#39;&#125;&quot;&gt;</span><br><span class="line">        &lt;todo-item v-for&#x3D;&quot;post in posts&quot; v-bind:key&#x3D;&quot;post.id&quot; v-bind:todo&#x3D;&quot;post&quot; v-on:enlarge-text&#x3D;&quot;addSize&quot;&gt;&lt;&#x2F;todo-item&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        Vue.component(&#39;todo-item&#39;, &#123;</span><br><span class="line">            props: [&#39;todo&#39;],</span><br><span class="line">            template: &#96;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;h3&gt;&#123;&#123; todo.title &#125;&#125;&lt;&#x2F;h3&gt;</span><br><span class="line">                &lt;div v-html&#x3D;&quot;todo.content&quot;&gt; &#123;&#123; todo.content &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">                &lt;button v-on:click&#x3D;&quot;$emit(&#39;enlarge-text&#39;, 0.1)&quot;&gt;</span><br><span class="line">                    Add Size</span><br><span class="line">                &lt;&#x2F;button&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &#96;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        var app &#x3D; new Vue(&#123;</span><br><span class="line">            el: &#39;.app&#39;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                posts: [&#123;</span><br><span class="line">                    id: 1,</span><br><span class="line">                    title: &quot;lome&quot;,</span><br><span class="line">                    content: &#39;hello lome&#39;</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    id: 2,</span><br><span class="line">                    title: &quot;lory&quot;,</span><br><span class="line">                    content: &quot;hello lory&quot;</span><br><span class="line">                &#125;],</span><br><span class="line">                postFontSize: 1</span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                addSize: function(size) &#123;</span><br><span class="line">                    this.postFontSize +&#x3D; size</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>lomect</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://lomect.com/vue-day2/">http://lomect.com/vue-day2/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/2020-09/"># 2020-09</a>
+                    
+                        <a href="/tags/Vue/"># Vue</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/vue-day1/">vue_day1</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© lomect | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
